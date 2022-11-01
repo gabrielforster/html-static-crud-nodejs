@@ -1,0 +1,14 @@
+body{
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+button[type="submit"]{
+    margin-top: 10px;
+}
