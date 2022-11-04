@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
+    <script defer src="./js/cadastro.js"></script>
+</head>
+<body>
+    <div>
+        <h1>Página de cadastro</h1>
+        <form action="/cadastro" method="POST">
+            
+            <div class="label-div">
+                <label for="cpf">CPF</label>
+                <input type="text" pattern="\d{3}.\d{3}.\d{3}-\d{2}" title="O cpf deve seguir o padrão 000.000.000-00" name="cpf" id="cpf" placeholder="Digite seu CPF">
+            </div>
+
+            <div class="label-div">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" id="nome" placeholder="Digite seu nome">
+            </div>
+
+            <div class="label-div">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" placeholder="Digite seu e-mail">
+            </div>
+
+            <h2>Endereço</h2>
+
+            <div class="label-div">
+                <label for="cep">CEP</label>
+                <input type="text" pattern="\d{5}-\d{3}" title="O CEP deve seguir o padrão 00000-000" name="cep" id="cep" placeholder="Digite seu CEP">
+            </div>
+
+            <div class="label-div">
+                <label for="rua">Rua</label>
+                <input type="text" name="rua" id="rua" placeholder="Digite sua rua">
+            </div>
+
+            <div class="label-div">
+                <label for="numero">Número</label>
+                <input type="number" name="numero" id="numero" placeholder="Digite seu número">
+            </div>
+
+            <div class="label-div">
+                <label for="bairro">Bairro</label>
+                <input type="text" name="bairro" id="bairro" placeholder="Digite seu bairro">
+            </div>
+
+            <div class="label-div">
+                <label for="cidade">Cidade</label>
+                <input type="text" name="cidade" id="cidade" placeholder="Digite sua cidade">
+            </div>
+
+            <div class="label-div">
+                <label for="estado">Estado</label>
+                <input type="text" name="estado" id="estado" placeholder="Digite seu estado">
+            </div>
+
+            <div class="label-div">
+                <label for="complemento">Complemento</label>
+                <input type="text" name="complemento" id="complemento" placeholder="Digite seu complemento">
+            </div>
+
+            <div class="label-div">
+                <label for="telefone">Telefone</label>
+                <input type="text" pattern="\(\d{2}\)\d{4,5}-\d{4}" title="O telefone deve seguir o padrão (00)00000-0000" name="telefone" id="telefone" placeholder="Digite seu telefone">
+            </div>
+
+            <div class="label-div">
+                <label for="celular">Celular</label>
+                <input type="text" pattern="\(\d{2}\)\d{5}-\d{4}" title="O celular deve seguir o padrão (00)00000-0000" name="celular" id="celular" placeholder="Digite seu celular">
+            </div>
+
+            <div class="form-button">
+                <button type="reset">Limpar</button>
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
