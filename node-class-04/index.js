@@ -15,7 +15,7 @@ app.get("/", (req, res) => { res.send("Hello World!")} )
 app.get("/cadastro", (req, res) => res.sendFile(__dirname + "/public/cadastro.html"))
 
 app.post("/cadastro", async (req, res) => {
-    await db.createCadastr(req.body)
+    await db.createCadastro(req.body)
     res.redirect("/cadastro")
 })
 
@@ -23,12 +23,12 @@ app.get("/usuarios", async (req, res) => res.sendFile(__dirname + "/public/usuar
 
 app.get("/api/users", async (req, res) => {
     const users = await db.getUsers()
-    res.send(users)
+    res.json(users)
 })
 
 app.get("/api/users/:id", async (req, res) => {
     const user = await db.getSingleUser(req.params.id)
-    res.send(user)
+    res.json(user)
 })
 
 app.listen(8080, () => {

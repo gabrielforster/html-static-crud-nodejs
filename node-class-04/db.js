@@ -4,8 +4,10 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "root",
-    database: "node04"
+    database: "node_04"
 })
+
+connection.query("desc cadastro;")
 
 const realConnection = connection.promise()
 
