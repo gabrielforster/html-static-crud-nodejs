@@ -40,4 +40,8 @@ function getSingleUser(id) {
     return realConnection.query("SELECT * FROM cadastro WHERE id = ?", [id])
 }
 
-export { createCadastro, getUsers, getSingleUser }
+function deleteUser(id) {
+    return realConnection.query("DELETE FROM cadastro WHERE id = ?", [id])
+}
+
+export { createCadastro, getUsers, getSingleUser, deleteUser }

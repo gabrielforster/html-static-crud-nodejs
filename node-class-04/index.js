@@ -26,6 +26,11 @@ app.get("/api/users", async (req, res) => {
     res.json(users)
 })
 
+app.delete("/api/users/:id", async (req, res) => {
+    await db.deleteUser(req.params.id)
+    res.send("ok")
+})
+
 app.listen(8080, () => {
     console.log("Server is running on port 8080")
 })
