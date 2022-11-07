@@ -26,11 +26,6 @@ app.get("/api/users", async (req, res) => {
     res.json(users)
 })
 
-app.get("/api/users/:id", async (req, res) => {
-    const user = await db.getSingleUser(req.params.id)
-    res.json(user)
-})
-
 app.listen(8080, () => {
     console.log("Server is running on port 8080")
 })
