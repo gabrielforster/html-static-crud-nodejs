@@ -10,10 +10,12 @@
     <script defer src="./js/cadastro.js"></script>
 </head>
 <body>
-    <div>
+    <div class="container">
         <h1>Página de cadastro</h1>
         <form action="/cadastro" method="POST">
             
+            <h2>Dados pessoais</h2>
+
             <div class="label-div">
                 <label for="cpf">CPF</label>
                 <input type="text" pattern="\d{3}.\d{3}.\d{3}-\d{2}" title="O cpf deve seguir o padrão 000.000.000-00" name="cpf" id="cpf" placeholder="Digite seu CPF">
@@ -57,8 +59,8 @@
             </div>
 
             <div class="label-div">
-                <label for="estado">Estado</label>
-                <input type="text" name="estado" id="estado" placeholder="Digite seu estado">
+                <label for="uf">Estado</label>
+                <input type="text" name="uf" id="uf" placeholder="Digite seu estado">
             </div>
 
             <div class="label-div">
