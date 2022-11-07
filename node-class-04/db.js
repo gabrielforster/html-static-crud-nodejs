@@ -3,7 +3,7 @@ import mysql from "mysql2"
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "Rocha1307###$",
     database: "node_04"
 })
 
@@ -20,15 +20,15 @@ function createCadastro({
     numero,
     bairro,
     cidade,
-    estado,
+    uf,
     complemento,
     telefone,
     celular
 
 }) {
     return realConnection.query(
-        "INSERT INTO cadastro (cpf, nome, email, cep, rua, numero, bairro, cidade, estado, complemento, telefone, celular) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        [cpf, nome, email, cep, rua, numero, bairro, cidade, estado, complemento, telefone, celular]
+        "INSERT INTO cadastro (cpf, nome, email, cep, rua, numero, bairro, cidade, uf, complemento, telefone, celular) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [cpf, nome, email, cep, rua, numero, bairro, cidade, uf, complemento, telefone, celular]
     )
 }
 
