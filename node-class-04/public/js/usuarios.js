@@ -16,45 +16,27 @@ async function createusersOnDocument() {
     const users = await getUsers()
 
     users.forEach(user => {
-        const accordionDiv = document.createElement("div")
-        accordionDiv.classList.add("accordion")
+        const userDiv = document.createElement("div")
+        userDiv.style.display = "flex"
 
-        const headerDiv = document.createElement("div")
-        headerDiv.classList.add("accordion-header")
-        headerDiv.innerHTML = user.nome
+        const userName = document.createElement("h3")
+        userName.innerText = user.nome
 
-        const bodyDiv = document.createElement("div")
-        bodyDiv.classList.add("accordion-body")
+        const userEmail = document.createElement("p")
+        userEmail.innerText = user.email
 
-        const contentDiv = document.createElement("div")
-        contentDiv.classList.add("accordion-content")
-
-        const footerDiv = document.createElement("div")
-        footerDiv.classList.add("accordion-footer")
-
-        const deleteButton = document.createElement("button")
-        deleteButton.classList.add("delete-button")
-        deleteButton.innerHTML = "Excluir"
-        deleteButton.addEventListener("click", async () => {
-            await deleteUser(user.id)
-            location.reload()
+        const userDeleteButton = document.createElement("button")
+        userDeleteButton.innerText = "Delete"
+        userDeleteButton.addEventListener("click", () => {
+            deleteUser(user.id)
+            userDiv.remove()
         })
 
-        footerDiv.appendChild(deleteButton)
+        userDiv.appendChild(userName)
+        userDiv.appendChild(userEmail)
+        userDiv.appendChild(userDeleteButton)
 
-        contentDiv.appendChild(footerDiv)
-
-        bodyDiv.appendChild(contentDiv)
-
-        headerDiv.appendChild(bodyDiv)
-
-        accordionDiv.appendChild(headerDiv)
-
-        mainDiv.appendChild(accordionDiv)
-    
-        headerDiv.addEventListener("click",  () => {
-            accordionDiv.classList.toggle("active")
-        })
+        mainDiv.appendChild(userDiv)
     })
 }
 
