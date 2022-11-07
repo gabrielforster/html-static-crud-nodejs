@@ -17,7 +17,6 @@ async function createusersOnDocument() {
 
     users.forEach(user => {
         const userDiv = document.createElement("div")
-        userDiv.style.display = "flex"
 
         const userName = document.createElement("h3")
         userName.innerText = user.nome
@@ -37,6 +36,7 @@ async function createusersOnDocument() {
         userDiv.appendChild(userDeleteButton)
 
         mainDiv.appendChild(userDiv)
+        mainDiv.classList.add("user-div")
     })
 }
 
