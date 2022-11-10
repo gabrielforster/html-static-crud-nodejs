@@ -4,3 +4,15 @@ async function fetchViaCEP(cep){
     return data;
 }
 
+document.getElementById("cep").addEventListener("blur", async (e) => {
+    const cep = e.target.value;
+    const data = await fetchViaCEP(cep);
+    if(data.erro){
+        alert("CEP inválido");
+        return;
+    }
+    document.getElementById("rua").value = data.logradouro;
+    document.getElementById("bairro").value = data.bairro;
+    document.getElementById("cidade").value = data.localidade;
+    document.getElementById("estado").value = data.uf;
+});
