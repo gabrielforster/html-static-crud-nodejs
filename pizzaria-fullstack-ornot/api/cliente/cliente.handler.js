@@ -1,7 +1,6 @@
 import db from "../../db.js";
 
 export async function createUser(req, res) {
-	console.log("entreu")
 	const { cpf, nome, sobrenome, nascimento } = req.body;
 	const userData = { cpf, nome, sobrenome, nascimento };
 
