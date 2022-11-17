@@ -13,14 +13,16 @@
     <form action="/api/pedido/fazer-pedido" method="POST">
         <div>
             <label for="cliente">Cliente</label>
-            <select name="cliente" id="cliente"></select>
+            <select name="cliente" id="cliente">
+                <option selected="" value="">Selecione um cliente</option>
+            </select>
             <a href="/cadastrar-cliente">Cadastrar novo cliente</a>
         </div>
 
         <div>
             <label for="tamanho-pizza">Tamanho da Pizza</label>
             <select name="tamanho-pizza" id="tamanho-pizza">
-                <option value=""></option>
+                <option selected="" value="">Selecione um tamanho de pizza</option>
                 <option value="pequena">Pequena</option>
                 <option value="media">Média</option>
                 <option value="grande">Grande</option>
