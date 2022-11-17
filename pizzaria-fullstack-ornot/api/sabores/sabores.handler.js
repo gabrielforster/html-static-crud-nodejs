@@ -1,7 +1,7 @@
 import db from "../../db.js"
 
 export async function getAll(req, res) {
-    const { rows } = await db.query("SELECT * FROM sabores")
+    const [rows] = await db.query("SELECT * FROM sabores")
     res.json(rows)
 }
 
@@ -14,10 +14,16 @@ export async function create(req, res) {
     const {nome, valor} = req.body
 
     try {
-        await db.query("INSERT INTO sabores (nome, valor) VALUES ($1, $2)", [nome, valor])
-        res.status(201)
+        const saborData = {nome, valor}
+        const [rows] = await db.query("select * from sabores")
+        saborData.id = rows.length + 1
+        await db.query('INSERT INTO sabores SET ?', saborData, (err, result) => {
+            if (err) throw err;
+        });
+
+        res.redirect("/cadastrar-sabor")
     } catch (error) {
-        res.status(500).json(error)
+        console.error(error)
     }
 }
 

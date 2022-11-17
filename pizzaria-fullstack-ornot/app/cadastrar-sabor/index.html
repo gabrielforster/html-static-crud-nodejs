@@ -7,6 +7,19 @@
     <title>Cadastrar sabor</title>
 </head>
 <body>
-    
+    <form action="/api/sabores/cadastrar-sabor" method="POST">
+        <div>
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome">
+        </div>
+        <div>
+            <label for="valor">Valor</label>
+            <input type="number" name="valor" id="valor">
+        </div>
+        <div>
+            <button type="reset">Limpar</button>
+            <button type="submit">Cadastrar</button>
+        </div>
+    </form>
 </body>
 </html>
