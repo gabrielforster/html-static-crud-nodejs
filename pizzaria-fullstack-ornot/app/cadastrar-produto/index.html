@@ -11,5 +11,32 @@
 </head>
 <body>
     <div id="produtos-page"></div>
+    <form action="/api/produto/cadastrar-produto" method="POST">
+        <div class="input-container">
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome">
+        </div>
+        <div class="input-container">
+            <label for="tipo">Tipo</label>
+            <select name="tipo" id="tipo">
+                <option value=""></option>
+                <option value="bebida">Bebida</option>
+                <option value="comida">Comida</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <label for="quantidade">Quantidade</label>
+            <input type="number" name="quantidade" id="quantidade">
+        </div>
+        <div class="input-container">
+            <label for="valor">Valor</label>
+            <input type="number" name="valor" id="valor">
+        </div>
+        <div class="buttons-div">
+            <button type="reset">Limpar</button>
+            <button type="submit">Cadastrar</button>
+        </div>
+
+    </form>
 </body>
 </html>
