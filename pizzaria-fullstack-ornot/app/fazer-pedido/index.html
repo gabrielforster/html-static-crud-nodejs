@@ -16,27 +16,49 @@
             <select name="cliente" id="cliente">
                 <option selected="" value="">Selecione um cliente</option>
             </select>
+        </div>
+        <div>
             <a href="/cadastrar-cliente">Cadastrar novo cliente</a>
         </div>
 
-        <div>
+        <div class="tamanho">
             <label for="tamanho-pizza">Tamanho da Pizza</label>
             <select name="tamanho-pizza" id="tamanho-pizza">
                 <option selected="" value="">Selecione um tamanho de pizza</option>
-                <option value="pequena">Pequena</option>
-                <option value="media">Média</option>
-                <option value="grande">Grande</option>
-                <option value="familia">Família</option>
+                <option value="P">Pequena</option>
+                <option value="M">Média</option>
+                <option value="G">Grande</option>
+                <option value="F">Família</option>
             </select>
         </div>
 
         <div id="sabores-main">
-            <h2>Sabores</h2>
-            <div id="sabores"></div>
+            <h4>Sabores</h4>
+            <div id="sabores">
+                <p>As opções estarão aqui quando você selecionar um tamanho de pizza!</p>
+            </div>
         </div>
 
-        <div id="produtos"></div>
+        <div class="extras"
+            <h4>Extras</h4>
+            <div id="produtos"></div>
+        </div>
 
+        <div>
+            <h4>Tipo de retirada</h4>
+            <div class="delivery">
+                <div>
+                    <label for="entrega">Entrega</label>
+                    <input type="radio" name="tipo-retirada" id="entrega" value="entrega">
+                </div>
+
+                <div>
+                    <label for="retirada">Retirada</label>
+                    <input type="radio" name="tipo-retirada" id="retirada" value="retirada">
+                </div>
+            </div>
+        </div>
+        
 
         <div>
             <button type="reset">Limpar</button>

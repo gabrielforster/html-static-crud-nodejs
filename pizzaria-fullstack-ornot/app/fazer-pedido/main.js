@@ -1,8 +1,8 @@
 const pizzaSizes = {
-    "pequena": 1,
-    "media": 2,
-    "grande": 3,
-    "familia": 4
+    "P": 1,
+    "M": 2,
+    "G": 3,
+    "F": 4
 }
 
 async function createClientsSelect(){
@@ -29,7 +29,14 @@ async function createSaboresSelects(){
     for(let i = 0; i < numberOfPizzas; i++){
         const select = document.createElement('select');
         select.name = `sabor${i + 1}`;
-        sabores.forEach(sabor => {
+        sabores.forEach((sabor, index) => {
+            if(index === 0) {
+                const option = document.createElement('option');
+                option.value = "";
+                option.innerText = "Selecione um sabor";
+                select.appendChild(option);
+            }
+
             const option = document.createElement('option');
             option.value = sabor.id;
             option.innerText = sabor.nome;
