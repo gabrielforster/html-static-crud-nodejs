@@ -6,6 +6,7 @@ export async function getAllPedidos(req, res) {
 }
 
 export async function createPedido(req, res) {
+
   const [produtos] = await db.query("SELECT * FROM produto");
 
   const {
@@ -26,6 +27,8 @@ export async function createPedido(req, res) {
 
   const formattedDate = new Date().toISOString().slice(0, 19).replace("T", " ");
 
+  const produtosPedido = produtos.filter((produto) => req.body[produto.nome]);
+
   const pedidoData = {
     id: idPedido,
     id_cliente: cliente,
@@ -42,34 +45,55 @@ export async function createPedido(req, res) {
     sabor4,
   };
 
-  const produtosPedido = produtos.filter((produto) => req.body[produto.nome]);
-
-	const precoProdutos = produtosPedido.reduce((acc, produto) => {
-		return acc + produto.valor
-	}, 0)
-	console.log(precoProdutos)
-
 	const produtosPedidoData = produtosPedido.map((produto) => {
     return {
-			id: new Date().getTime(),			
+			id: new Date().getTime() / Math.random(),			
       id_pedido: idPedido,
       id_produto: produto.id,
     };
   });
 
 	const pizzaPedidoData = {
-		id: new Date().getTime(),
+		id: new Date().getTime() / Math.random(),
 		id_pedido: idPedido,
 		id_pizza: idPizza
 	}
 
 	//TODO SUM ALL VALUES TO GET THE VALOR_TOTAL
-	return 
+
+	const precoProdutos = produtosPedido.reduce((acc, produto) => {
+		return acc + produto.valor
+	}, 0)
+
+  async function getPrecoSabor(saborId = undefined){
+    if(!saborId) return 0
+    const [sabor] = await db.query("SELECT * FROM sabores WHERE id = ?", [saborId])
+    return Number(sabor[0].valor)
+  } 
+
+  const precoPizza = async () => {
+    const precos = [await getPrecoSabor(sabor1), await getPrecoSabor(sabor2), await getPrecoSabor(sabor3), await getPrecoSabor(sabor4)]
+    return precos.reduce((acc, preco) => acc + preco, 0)
+  }
+
+  const splited = precoProdutos.split('.')
+  const finalPrecoProduto = splited.reduce((acc, p) => acc + Number(p), 0)
+
+  const valorTotal = finalPrecoProduto + (await precoPizza())
+
+  pedidoData.valor_total = valorTotal
 
   try {
 
+    await db.query("INSERT INTO pedido SET ?", [pedidoData]);
+    await db.query("INSERT INTO pizza SET ?", [pizzaData]);
+    await db.query("INSERT INTO pizza_pedido SET ?", [pizzaPedidoData]);
+    await produtosPedidoData.forEach(async data => {
+      await db.query("INSERT INTO produto_pedido SET ?", [data]);
+    })
+
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 
   res.redirect("/fazer-pedido");
