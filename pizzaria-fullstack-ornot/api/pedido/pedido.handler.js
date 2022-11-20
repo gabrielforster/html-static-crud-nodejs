@@ -1,8 +1,58 @@
 import db from "../../db.js";
 
 export async function getAllPedidos(req, res) {
-  const pedidos = await db.query("SELECT * FROM pedido");
-  res.json(pedidos.rows);
+  const [sabores] = await db.query("SELECT * FROM sabores")
+  const [pedidos] = await db.query("SELECT * FROM pedido");
+  const [pizza_pedido] = await db.query("SELECT * FROM pizza_pedido")
+  const [pizzas] = await db.query("SELECT * FROM pizza")
+  const [produtos] = await db.query("SELECT * FROM produto")
+  const [produtos_pedido] = await db.query("SELECT * FROM produto_pedido")
+  const [clientes] = await db.query("SELECT * FROM cliente")
+  const [enderecos] = await db.query("SELECT * FROM endereco")
+  
+  function getSabor(id = null) {
+    if (id) {
+      return sabores.find(pizza => pizza.id === id).nome
+    }
+    return null
+  }
+
+  //format pedidos so it has correponded pizza(with the sabores name), and produtos name
+  const pedidosFormatted = pedidos.map(pedido => {
+    const pizza_pedidoFiltered = pizza_pedido
+    .filter(pizza_pedido_item => pizza_pedido_item.id_pedido === pedido.id)
+    .map(pizza_pedido_item => {
+      const pizza = pizzas.find(pizza => pizza.id === pizza_pedido_item.id_pizza)
+      
+      return {
+        tamanho: pizza.tamanho,
+        sabor1: getSabor(pizza.sabor1),
+        sabor2: getSabor(pizza.sabor2),
+        sabor3: getSabor(pizza.sabor3),
+        sabor4: getSabor(pizza.sabor4),
+      }
+    })
+    
+    const produtos_pedidoFiltered = produtos_pedido.filter(produto_pedido => produto_pedido.id_pedido === pedido.id)
+    .map(produto_pedido => {
+      const produto = produtos.find(produto => produto.id === produto_pedido.id_produto)
+
+      return produto.nome
+    })
+    
+    const cliente = {...clientes.find(cliente => cliente.id = pedido.id_cliente)}
+
+    return {
+      ...pedido,
+      cliente:{
+        ...cliente,
+        endereco: enderecos.find(endereco => endereco.id_endereco === cliente.id_endereco)
+      },
+      pizzas: pizza_pedidoFiltered,
+      produtos: produtos_pedidoFiltered
+    }
+  })
+  res.json(pedidosFormatted);
 }
 
 export async function createPedido(req, res) {
