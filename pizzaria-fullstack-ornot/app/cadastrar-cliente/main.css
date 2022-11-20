@@ -24,3 +24,11 @@ form div{
     width: 100%;
     max-width: 450px;
 }
+
+button {
+    margin-top: 10px
+}
+
+button + button{
+    margin-top: 5px;
+}
