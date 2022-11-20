@@ -18,3 +18,7 @@ a{
     color: white;
     text-decoration: none;
 }
+
+.links a{
+    text-decoration: underline;
+}
