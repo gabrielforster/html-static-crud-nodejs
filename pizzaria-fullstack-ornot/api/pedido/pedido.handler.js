@@ -9,7 +9,7 @@ export async function getAllPedidos(req, res) {
   const [produtos_pedido] = await db.query("SELECT * FROM produto_pedido")
   const [clientes] = await db.query("SELECT * FROM cliente")
   const [enderecos] = await db.query("SELECT * FROM endereco")
-  
+
   function getSabor(id = null) {
     if (id) {
       return sabores.find(pizza => pizza.id === id).nome
@@ -40,7 +40,7 @@ export async function getAllPedidos(req, res) {
       return produto.nome
     })
     
-    const cliente = {...clientes.find(cliente => cliente.id = pedido.id_cliente)}
+    const cliente = clientes.find(cliente => cliente.cpf === pedido.id_cliente)
 
     return {
       ...pedido,
