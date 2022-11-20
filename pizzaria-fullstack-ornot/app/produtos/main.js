@@ -1,6 +1,37 @@
-const app = document.getElementById("produtos-page")
+const app = document.getElementById("app")
 
-const title = document.createElement("h1")
-title.innerText = "Produtos"
+async function fetchProdutos(){
+  const response = await fetch('/api/produto')
+  return await response.json()
+}
 
-app.appendChild(title)
+
+async function mountTable(){
+  const produtos = await fetchProdutos()
+
+  const table = document.createElement("table")
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${produtos.map(produto => `
+        <tr>
+          <td>${produto.nome}</td>
+          <td>${produto.tipo}</td>
+          <td>${produto.quantidade}</td>
+          <td>${produto.valor}</td>
+        </tr>
+      `).join("")}
+    </tbody>
+  `
+
+  app.appendChild(table)
+}
+
+mountTable()
