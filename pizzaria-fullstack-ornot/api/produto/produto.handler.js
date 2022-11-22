@@ -25,3 +25,12 @@ export async function getAllProducts(req, res) {
 		console.error(error)
 	}
 }
+
+export async function getOne(req, res){
+	try {
+		const [rows] = await db.query("SELECT * FROM produto WHERE id = ?", [req.params.id])
+		res.json(rows)
+	} catch (error) {
+		console.error(error)
+	}
+}
