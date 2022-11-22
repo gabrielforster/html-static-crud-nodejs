@@ -45,6 +45,17 @@ function createModalListeners(){
   });  
 }
 
+async function deleteProduct(productId) {
+  if(confirm(`Tem certeza que deseja exluir o produto com id: ${productId}?`)){
+    const response = await fetch(`/api/produto/${productId}`, {
+      method: 'DELETE'
+    })
+    if(response.status === 200){
+      window.location.reload()
+    }
+  }
+}
+
 async function mountTable(){
   const produtos = await fetchProdutos()
 
@@ -73,7 +84,11 @@ async function mountTable(){
             >
               Editar
             </a>
-            <a>Excluir</a>
+            <a
+              onclick="deleteProduct(${produto.id})"
+            >
+              Excluir
+            </a>
           </td>
         </tr>
       `).join("")}
