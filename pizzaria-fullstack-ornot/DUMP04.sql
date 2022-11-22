@@ -184,7 +184,7 @@ CREATE TABLE `produto` (
   `quantidade` int NOT NULL,
   `valor` decimal(13,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1669124077 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,7 +193,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (1,'Coca-cola','bebida',16,5.00),(2,'Guaraná','bebida',20,4.00);
+INSERT INTO `produto` VALUES (2,'Guaraná','bebida',30,4.00),(166912413,'Coca-cola','bebida',50,6.00);
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +212,7 @@ CREATE TABLE `produto_pedido` (
   KEY `id_pedido` (`id_pedido`),
   KEY `id_produto` (`id_produto`),
   CONSTRAINT `produto_pedido_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id`),
-  CONSTRAINT `produto_pedido_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`)
+  CONSTRAINT `produto_pedido_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -222,7 +222,7 @@ CREATE TABLE `produto_pedido` (
 
 LOCK TABLES `produto_pedido` WRITE;
 /*!40000 ALTER TABLE `produto_pedido` DISABLE KEYS */;
-INSERT INTO `produto_pedido` VALUES (1741060578690,2,2),(1895301166934,2,1),(2500776758362,3,1),(2589824063599,1,1),(2719864322397,4,2),(3821585564591,1,2);
+INSERT INTO `produto_pedido` VALUES (1741060578690,2,2),(2719864322397,4,2),(3821585564591,1,2);
 /*!40000 ALTER TABLE `produto_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-20  9:45:06
+-- Dump completed on 2022-11-22 10:36:51
