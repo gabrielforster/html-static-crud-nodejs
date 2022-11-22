@@ -34,3 +34,13 @@ export async function getOne(req, res){
 		console.error(error)
 	}
 }
+
+export async function editProduct(req, res){
+	const { id, nome, quantidade, valor } = req.body;
+	try {
+		await db.query("UPDATE produto SET nome = ?, quantidade = ?, valor = ? WHERE id = ?", [nome, quantidade, valor, id])
+		res.redirect("/produtos");
+	} catch (error) {
+		console.error(error)
+	}
+}
