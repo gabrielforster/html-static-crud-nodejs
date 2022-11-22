@@ -29,7 +29,7 @@ export async function getAllProducts(req, res) {
 export async function getOne(req, res){
 	try {
 		const [rows] = await db.query("SELECT * FROM produto WHERE id = ?", [req.params.id])
-		res.json(rows)
+		res.json(rows[0])
 	} catch (error) {
 		console.error(error)
 	}
