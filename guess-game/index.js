@@ -17,7 +17,7 @@ app.get("/jogo", (req, res) => {
 })
 
 app.get("/placar", (req, res) => {
-    res.sendFile(__dirname + "/app/placar.html")
+    res.sendFile(__dirname + "/app/placar/resultados.html")
 })
 
 app.post("/score", (req, res) => {
@@ -27,6 +27,12 @@ app.post("/score", (req, res) => {
 
     res.status(200).json({ message: "ok" })
 })
+
+app.get("/score", async (req, res) => {
+    const [result] = await db.query("SELECT * FROM guess_game ORDER BY score DESC")
+    res.status(200).json(result)
+})
+
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");
