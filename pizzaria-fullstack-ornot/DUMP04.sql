@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `atividade_04` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `atividade_04`;
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
 --
 -- Host: localhost    Database: atividade_04
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	8.0.31-0ubuntu2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +42,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES ('000.000.000-00','Gabriel','Rocha','2004-07-13',1);
+INSERT INTO `cliente` VALUES ('000.000.000-00','Gabriel','Rocha','2004-07-13',1),('000.000.000-01','Lucas','Henrique','2003-01-16',2),('000.000.000-02','Manuelma','Morescki','2005-09-22',3),('000.000.000-03','Luciana','Forster','1970-03-07',4),('000.000.000-04','Israel','Rocha','1966-11-27',5);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +72,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES ('89254274','Rua Liberato Volpi',64,'Casa','Rau','Jaraguá do Sul','SC',1);
+INSERT INTO `endereco` VALUES ('89254274','Rua Liberato Volpi',64,'Casa','Rau','Jaraguá do Sul','SC',1),('89256213','Rua Bernardo Dornbusch',55,'Casa','Vila Lalau','Jaraguá do Sul','SC',2),('89256213','Rua Bernardo Dornbusch',53,'Casa','Vila Lalau','Jaraguá do Sul','SC',3),('89190000','Angelbert Muller',207,'Casa','Universitário','Taió','SC',4),('89190000','Angelbert Muller',207,'Casa','Universitario','Taió','SC',5);
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,7 @@ CREATE TABLE `pedido` (
   PRIMARY KEY (`id`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,6 +101,7 @@ CREATE TABLE `pedido` (
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
+INSERT INTO `pedido` VALUES (1,'2022-11-19 22:03:22',51.00,'entrega','000.000.000-00'),(2,'2022-11-19 23:55:22',69.00,'retirada','000.000.000-01'),(3,'2022-11-20 01:04:22',44.00,'entrega','000.000.000-02'),(4,'2022-11-20 01:04:35',61.00,'retirada','000.000.000-03');
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,19 +119,16 @@ CREATE TABLE `pizza` (
   `sabor2` int DEFAULT NULL,
   `sabor3` int DEFAULT NULL,
   `sabor4` int DEFAULT NULL,
-  `sabor5` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `sabor1` (`sabor1`),
   KEY `sabor2` (`sabor2`),
   KEY `sabor3` (`sabor3`),
   KEY `sabor4` (`sabor4`),
-  KEY `sabor5` (`sabor5`),
   CONSTRAINT `pizza_ibfk_1` FOREIGN KEY (`sabor1`) REFERENCES `sabores` (`id`),
   CONSTRAINT `pizza_ibfk_2` FOREIGN KEY (`sabor2`) REFERENCES `sabores` (`id`),
   CONSTRAINT `pizza_ibfk_3` FOREIGN KEY (`sabor3`) REFERENCES `sabores` (`id`),
-  CONSTRAINT `pizza_ibfk_4` FOREIGN KEY (`sabor4`) REFERENCES `sabores` (`id`),
-  CONSTRAINT `pizza_ibfk_5` FOREIGN KEY (`sabor5`) REFERENCES `sabores` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `pizza_ibfk_4` FOREIGN KEY (`sabor4`) REFERENCES `sabores` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,6 +137,7 @@ CREATE TABLE `pizza` (
 
 LOCK TABLES `pizza` WRITE;
 /*!40000 ALTER TABLE `pizza` DISABLE KEYS */;
+INSERT INTO `pizza` VALUES (1,'G',3,4,4,NULL),(2,'F',5,1,4,5),(3,'G',3,5,2,NULL),(4,'F',1,3,4,5);
 /*!40000 ALTER TABLE `pizza` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +149,7 @@ DROP TABLE IF EXISTS `pizza_pedido`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pizza_pedido` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL,
   `id_pizza` int DEFAULT NULL,
   `id_pedido` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -167,6 +166,7 @@ CREATE TABLE `pizza_pedido` (
 
 LOCK TABLES `pizza_pedido` WRITE;
 /*!40000 ALTER TABLE `pizza_pedido` DISABLE KEYS */;
+INSERT INTO `pizza_pedido` VALUES (1720560956127,1,1),(1829753454673,2,2),(4474501198199,4,4),(42948762293175,3,3);
 /*!40000 ALTER TABLE `pizza_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +184,7 @@ CREATE TABLE `produto` (
   `quantidade` int NOT NULL,
   `valor` decimal(13,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1669124077 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,7 +193,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (1,'Coca-cola','bebida',16,5.00),(2,'Guaraná','bebida',20,4.00);
+INSERT INTO `produto` VALUES (2,'Guaraná','bebida',30,4.00),(166912413,'Coca-cola','bebida',50,6.00);
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,14 +205,14 @@ DROP TABLE IF EXISTS `produto_pedido`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `produto_pedido` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL,
   `id_pedido` int DEFAULT NULL,
   `id_produto` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_pedido` (`id_pedido`),
   KEY `id_produto` (`id_produto`),
   CONSTRAINT `produto_pedido_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id`),
-  CONSTRAINT `produto_pedido_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`)
+  CONSTRAINT `produto_pedido_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -222,6 +222,7 @@ CREATE TABLE `produto_pedido` (
 
 LOCK TABLES `produto_pedido` WRITE;
 /*!40000 ALTER TABLE `produto_pedido` DISABLE KEYS */;
+INSERT INTO `produto_pedido` VALUES (1741060578690,2,2),(2719864322397,4,2),(3821585564591,1,2);
 /*!40000 ALTER TABLE `produto_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-17 12:26:25
+-- Dump completed on 2022-11-22 10:36:51

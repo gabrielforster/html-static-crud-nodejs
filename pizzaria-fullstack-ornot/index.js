@@ -27,10 +27,6 @@ app.get("/cadastrar-produto", (req, res) => {
     res.sendFile(__dirname + "/app/cadastrar-produto")
 })
 
-app.get("/clientes", (req, res) => {
-    res.sendFile(__dirname + "/app/clientes")
-})
-
 app.get("/cadastrar-cliente", (req, res) => {
     res.sendFile(__dirname + "/app/cadastrar-cliente")
 })
@@ -43,14 +39,9 @@ app.get("/fazer-pedido", (req, res) => {
     res.sendFile(__dirname + "/app/fazer-pedido")
 })
 
-app.get("/sabores", (req, res) => {
-    res.sendFile(__dirname + "/app/sabores")
-})
-
 app.get("/cadastrar-sabor", (req, res) => {
     res.sendFile(__dirname + "/app/cadastrar-sabor")
 })
-
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos</title>
-    <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="main.css">
-    <script defer src="main.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Produtos</title>
+	<link rel="stylesheet" href="../main.css">
+	<link rel="stylesheet" href="main.css">
+	<script defer src="main.js"></script>
 </head>
+
 <body>
-    <div id="produtos-page"></div>
+	<div id="app"></div>
+
+	<div class="container">
+		<a data-modal="modal-one">Open Modal</a>
+	</div>
+
+	<div class="modal" id="edit-modal">
+		<div class="modal-bg modal-exit"></div>
+		<div class="modal-container">
+			<form action="/api/produto/edit" method="POST">
+				<div>
+					<label for="id">Id Produto</label>
+					<input readonly type="text" name="id" id="id">
+				</div>
+				<div>
+					<label for="nome">Nome</label>
+					<input type="text" name="nome" id="nome">
+				</div>
+				<div>
+					<label for="preco">Preço</label>
+					<input type="number" name="valor" id="valor">
+				</div>
+				<div>
+					<label for="quantidade">Quantidade</label>
+					<input type="number" name="quantidade" id="quantidade">
+				</div>
+
+				<div>
+					<button type="submit">Salvar</button>
+				</div>
+			</form>
+			<button class="modal-close modal-exit">X</button>
+		</div>
+	</div>
 </body>
+
 </html>
