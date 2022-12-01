@@ -13,11 +13,19 @@ app.get("/", (req, res) => {
 })
 
 app.get("/jogo", (req, res) => {
-    res.sendFile(__dirname + "/app/jogo.html")
+    res.sendFile(__dirname + "/app/jogo/jogo.html")
 })
 
 app.get("/placar", (req, res) => {
     res.sendFile(__dirname + "/app/placar.html")
+})
+
+app.post("/score", (req, res) => {
+    console.log(req.body)
+    const { name, score } = req.body;
+    db.query(`INSERT INTO guess_game (name, score) VALUES ('${name}', ${score})`)
+
+    res.status(200).json({ message: "ok" })
 })
 
 app.listen(3000, () => {
