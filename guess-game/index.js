@@ -21,7 +21,6 @@ app.get("/placar", (req, res) => {
 })
 
 app.post("/score", (req, res) => {
-    console.log(req.body)
     const { name, score } = req.body;
     db.query(`INSERT INTO guess_game (name, score) VALUES ('${name}', ${score})`)
 
