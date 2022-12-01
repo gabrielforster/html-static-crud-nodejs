@@ -1,0 +1,41 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 30px;
+	background-color: #333;
+	color: #fff;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 10px 20px;
+}
+
+.container main{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
+
+.container main nav {
+	margin-top: 5rem;
+}
+
+.container main nav a{
+	color: #333;
+	text-decoration: none;
+	padding: 10px 20px;
+	background-color: #7DC7DC;
+	border-radius: 5px;
+	margin: 0 10px;
+
+}
+
+.container main .text{
+	margin-top: 5rem;
+	line-height: 1.5rem;
+}
