@@ -7,6 +7,9 @@ async function registerGuessToDB() {
   const username = document.getElementById("nome").value;
 
   const score = 1000 / (dificuldade + guesses);
+
+  if(score <= 0) return
+
   const data = {
     name: username,
     score,
